@@ -14,4 +14,6 @@ class GetBatches(Resource):
         dataframe = generateDataframe(result)
         month = request.get_json()
         batches = getBatchesForMonth(dataframe, month["month"])
-        return jsonify({"batches": np.ndarray.tolist(batches)})
+        print(pd.Series(batches).to_json(orient='values'))
+       # return jsonify(np.ndarray.tolist(batches))
+        return jsonify(pd.Series(batches).to_json(orient='values'))

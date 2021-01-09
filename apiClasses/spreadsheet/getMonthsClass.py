@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_restful import Resource, Api
+import numpy as np
+import pandas as pd
 
 from functions.spreadsheetData.spreadsheetDatafunction import spreadsheetData
 from functions.generateDataframefunction import generateDataframe
@@ -11,5 +13,5 @@ class GetMonths(Resource):
         result = spreadsheetData()
         dataframe = generateDataframe(result)
         months = getMonths(dataframe)
-        print(jsonify({"months": months}))
-        return jsonify({"months": months}), 200
+        print(months)
+        return pd.Series(months).to_json(orient='values'), 200

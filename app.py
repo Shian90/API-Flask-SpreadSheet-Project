@@ -6,6 +6,7 @@ from google.oauth2 import service_account
 from flask import Flask, request
 from flask_restful import Resource, Api
 from pymessenger.bot import Bot
+from flask_cors import CORS, cross_origin
 
 from functions.spreadsheetData.spreadsheetDatafunction import spreadsheetData
 from functions.resultForDataframe import resultForDataframe
@@ -28,6 +29,8 @@ import random
 
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 api = Api(app)
 
 # messenger bot
