@@ -270,9 +270,19 @@ def formatInvoice(totallength, sheetId):
                     'sheetId': sheetId,
                     'dimension': 'ROWS',
                     'startIndex': 3 + j*8,
+                    'endIndex': 4 + j*8
+                },
+                'properties': {'pixelSize': 70},
+                'fields': 'pixelSize'
+            }})
+            requests.append({'updateDimensionProperties': {
+                'range': {
+                    'sheetId': sheetId,
+                    'dimension': 'ROWS',
+                    'startIndex': 4 + j*8,
                     'endIndex': 5 + j*8
                 },
-                'properties': {'pixelSize': 50},
+                'properties': {'pixelSize': 30},
                 'fields': 'pixelSize'
             }})
             requests.append({'updateDimensionProperties': {
@@ -545,20 +555,24 @@ def makeInvoice(dataframe, name):
     sum = getTotalPrice(dataframe)
     adv = getAdvance(dataframe)
     deliveryCharge = getDeliveryCharge(dataframe, sum, adv)
+    deliveryArea = ""
+    if ( deliveryCharge > 100 ):
+      deliveryArea = "Outside\nDhaka"
+    else:
+      deliveryArea = "Inside\nDhaka"
     contactNumber = getContactNumber(dataframe)
     address = getAddress(dataframe)
 
-    invoiceData = []
-    totalItems = "Number of items: "
-    totalItems = totalItems + str(len(dataframe))
+    invoiceData=[]
+    totalItems="Number of items: "
+    totalItems=totalItems + str(len(dataframe))
 
-    invoiceData.append(["Chérie", "", "Invoice"])
+    invoiceData.append(["Chérie","","Invoice"])
     invoiceData.append(["Delivery to"])
-    invoiceData.append([name, "", "Total Price", sum])
-    invoiceData.append([address, "", "Delivery \nCharge", deliveryCharge])
-    invoiceData.append(["", "", "Advance", adv])
-    invoiceData.append(
-        [contactNumber, "", "Total Due", sum-adv+deliveryCharge])
+    invoiceData.append([name,"","Total Price",sum])
+    invoiceData.append([address,"","Delivery \nCharge \n(" + deliveryArea+ ")",deliveryCharge])
+    invoiceData.append(["","","Advance",adv])
+    invoiceData.append([contactNumber,"","Total Due",sum-adv+deliveryCharge])
     invoiceData.append([totalItems])
     invoiceData.append(["------------------------------------------"])
     return invoiceData

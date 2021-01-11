@@ -1,5 +1,4 @@
 def getBatchesForMonth(dataframe, month):
-    temp = dataframe[(dataframe['Shipment'] == month)
-                     & (dataframe['Batch'] != 'CGM')]
+    temp = dataframe[(dataframe['Shipment'] == month)]
     batches = temp['Batch'].unique()
     return batches
