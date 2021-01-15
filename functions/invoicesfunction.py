@@ -62,509 +62,533 @@ def getSheetID():
 # Mergy boi for one table
 # RowIndex += innerloopvar * 8
 # ColumnIndex += outerloopvar * 5
-
-
 def mergyboi(totallength, sheetId):
-    requests = []
-    for i in range(2):
-        for j in range(math.ceil(totallength/2)):
-            # C1-D2
-            requests.append({'mergeCells': {
-                'mergeType': 'MERGE_ALL',
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 2 + i*5,
-                    'startRowIndex': 0 + j*8,
-                    'endColumnIndex': 4 + i*5,
-                    'endRowIndex': 2 + j*8
-                }
-            }})
-            # A3-B3
-            requests.append({'mergeCells': {
-                'mergeType': 'MERGE_ALL',
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 0 + i*5,
-                    'startRowIndex': 2 + j*8,
-                    'endColumnIndex': 2 + i*5,
-                    'endRowIndex': 3 + j*8
-                }
-            }})
-            # A4-B5
-            requests.append({'mergeCells': {
-                'mergeType': 'MERGE_ALL',
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 0 + i*5,
-                    'startRowIndex': 3 + j*8,
-                    'endColumnIndex': 2 + i*5,
-                    'endRowIndex': 5 + j*8
-                }
-            }})
-            # A7-B7
-            requests.append({'mergeCells': {
-                'mergeType': 'MERGE_ALL',
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 0 + i*5,
-                    'startRowIndex': 6 + j*8,
-                    'endColumnIndex': 2 + i*5,
-                    'endRowIndex': 7 + j*8
-                }
-            }})
-            # C6-C7
-            requests.append({'mergeCells': {
-                'mergeType': 'MERGE_ALL',
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 2 + i*5,
-                    'startRowIndex': 5 + j*8,
-                    'endColumnIndex': 3 + i*5,
-                    'endRowIndex': 7 + j*8
-                }
-            }})
-            # D6-D7
-            requests.append({'mergeCells': {
-                'mergeType': 'MERGE_ALL',
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 3 + i*5,
-                    'startRowIndex': 5 + j*8,
-                    'endColumnIndex': 4 + i*5,
-                    'endRowIndex': 7 + j*8
-                }
-            }})
-    response = sheet.batchUpdate(spreadsheetId=SAMPLE_SPREADSHEET_ID, body={
-                                 'requests': requests}).execute()
+  requests = []
+  for i in range(2):
+    for j in range(math.ceil(totallength/2)):
+      # C1-D2
+      requests.append({'mergeCells': {
+              'mergeType': 'MERGE_ALL',
+              'range': {
+                  'sheetId': sheetId,
+                  'startColumnIndex': 2 + i*5,
+                  'startRowIndex': 0 + j*9,
+                  'endColumnIndex': 4 + i*5,
+                  'endRowIndex': 2 + j*9
+              }
+          }})
+      #A3-B3
+      requests.append({'mergeCells': {
+              'mergeType': 'MERGE_ALL',
+              'range': {
+                  'sheetId': sheetId,
+                  'startColumnIndex': 0 + i*5,
+                  'startRowIndex': 2 + j*9,
+                  'endColumnIndex': 2 + i*5,
+                  'endRowIndex': 3 + j*9
+              }
+          }})
+      #A4-B5
+      requests.append({'mergeCells': {
+              'mergeType': 'MERGE_ALL',
+              'range': {
+                  'sheetId': sheetId,
+                  'startColumnIndex': 0 + i*5,
+                  'startRowIndex': 3 + j*9,
+                  'endColumnIndex': 2 + i*5,
+                  'endRowIndex': 5 + j*9
+              }
+          }})
+      #A6-B6
+      requests.append({'mergeCells': {
+              'mergeType': 'MERGE_ALL',
+              'range': {
+                  'sheetId': sheetId,
+                  'startColumnIndex': 0 + i*5,
+                  'startRowIndex': 5 + j*9,
+                  'endColumnIndex': 2 + i*5,
+                  'endRowIndex': 6 + j*9
+              }
+          }})
+      #A7-B7
+      requests.append({'mergeCells': {
+              'mergeType': 'MERGE_ALL',
+              'range': {
+                  'sheetId': sheetId,
+                  'startColumnIndex': 0 + i*5,
+                  'startRowIndex': 6 + j*9,
+                  'endColumnIndex': 2 + i*5,
+                  'endRowIndex': 7 + j*9
+              }
+          }})
+      #A8-B8
+      requests.append({'mergeCells': {
+              'mergeType': 'MERGE_ALL',
+              'range': {
+                  'sheetId': sheetId,
+                  'startColumnIndex': 0 + i*5,
+                  'startRowIndex': 7 + j*9,
+                  'endColumnIndex': 2 + i*5,
+                  'endRowIndex': 8 + j*9
+              }
+          }})
+      #C3-C4
+      requests.append({'mergeCells': {
+              'mergeType': 'MERGE_ALL',
+              'range': {
+                  'sheetId': sheetId,
+                  'startColumnIndex': 2 + i*5,
+                  'startRowIndex': 2 + j*9,
+                  'endColumnIndex': 3 + i*5,
+                  'endRowIndex': 4 + j*9
+              }
+          }})
+      #C7-C8
+      requests.append({'mergeCells': {
+              'mergeType': 'MERGE_ALL',
+              'range': {
+                  'sheetId': sheetId,
+                  'startColumnIndex': 2 + i*5,
+                  'startRowIndex': 6 + j*9,
+                  'endColumnIndex': 3 + i*5,
+                  'endRowIndex': 8 + j*9
+              }
+          }})
+      #D3-D4
+      requests.append({'mergeCells': {
+              'mergeType': 'MERGE_ALL',
+              'range': {
+                  'sheetId': sheetId,
+                  'startColumnIndex': 3 + i*5,
+                  'startRowIndex': 2 + j*9,
+                  'endColumnIndex': 4 + i*5,
+                  'endRowIndex': 4 + j*9
+              }
+          }})
+      #D7-D8
+      requests.append({'mergeCells': {
+              'mergeType': 'MERGE_ALL',
+              'range': {
+                  'sheetId': sheetId,
+                  'startColumnIndex': 3 + i*5,
+                  'startRowIndex': 6 + j*9,
+                  'endColumnIndex': 4 + i*5,
+                  'endRowIndex': 8 + j*9
+              }
+          }})
+  response = sheet.batchUpdate(spreadsheetId=SAMPLE_SPREADSHEET_ID, body={'requests' : requests}).execute()
+
 
 
 def formatInvoice(totallength, sheetId):
-    requests = []
-    for i in range(2):
-        for j in range(math.ceil(totallength/2)):
-            # A1 text bold, italic, fontSize
-            requests.append({'repeatCell': {
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 0 + i*5,
-                    'startRowIndex':  0 + j*8,
-                    'endColumnIndex': 1 + i*5,
-                    'endRowIndex': 1 + j*8
-                },
-                'cell': {
-                    'userEnteredFormat': {
-                        'textFormat': {'bold': True, 'fontSize': 20, 'italic': True}
-                    }
-                },
-                'fields': 'userEnteredFormat(textFormat)'
-            }})
+  requests = []
+  for i in range(2):
+    for j in range(math.ceil(totallength/2)):
+      #A1 text bold, italic, fontSize
+      requests.append({'repeatCell': {
+       'range': {
+         'sheetId': sheetId,
+          'startColumnIndex': 0 + i*5,
+          'startRowIndex':  0 + j*9,
+          'endColumnIndex': 1 + i*5,
+          'endRowIndex': 1 + j*9
+       },
+       'cell': {
+           'userEnteredFormat': {
+              'textFormat': {'bold': True,'fontSize': 20,'italic': True}
+           }
+       },
+       'fields':'userEnteredFormat(textFormat)'
+      }})
 
-            # A2 text bold
-            requests.append({'repeatCell': {
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 0 + i*5,
-                    'startRowIndex':  1 + j*8,
-                    'endColumnIndex': 1 + i*5,
-                    'endRowIndex': 2 + j*8
-                },
-                'cell': {
-                    'userEnteredFormat': {
-                        'textFormat': {'bold': True, }
-                    }
-                },
-                'fields': 'userEnteredFormat(textFormat)'
-            }})
+      #A2 text bold
+      requests.append({'repeatCell': {
+       'range': {
+         'sheetId': sheetId,
+          'startColumnIndex': 0 + i*5,
+          'startRowIndex':  1 + j*9,
+          'endColumnIndex': 1 + i*5,
+          'endRowIndex': 2 + j*9
+       },
+       'cell': {
+           'userEnteredFormat': {
+              'textFormat': {'bold': True,}
+           }
+       },
+       'fields':'userEnteredFormat(textFormat)'
+      }})
 
-            # C1-D2 text bold, fontSize and alignment
-            requests.append({'repeatCell': {
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 2 + i*5,
-                    'startRowIndex':  0 + j*8,
-                    'endColumnIndex': 4 + i*5,
-                    'endRowIndex': 2 + j*8
-                },
-                'cell': {
-                    'userEnteredFormat': {
-                        'textFormat': {'bold': True, 'fontSize': 20, },
-                        'verticalAlignment': 'BOTTOM',
-                        'horizontalAlignment': 'CENTER'
-                    }
-                },
-                'fields': 'userEnteredFormat(textFormat, verticalAlignment, horizontalAlignment)'
-            }})
+      #C1-D2 text bold, fontSize and alignment
+      requests.append({'repeatCell': {
+       'range': {
+         'sheetId': sheetId,
+          'startColumnIndex': 2 + i*5,
+          'startRowIndex':  0 + j*9,
+          'endColumnIndex': 4 + i*5,
+          'endRowIndex': 2 + j*9
+       },
+       'cell': {
+           'userEnteredFormat': {
+              'textFormat': {'bold': True,'fontSize': 20,},
+              'verticalAlignment': 'BOTTOM',
+              'horizontalAlignment': 'CENTER'
+           }
+       },
+       'fields':'userEnteredFormat(textFormat, verticalAlignment, horizontalAlignment)'
+      }})
 
-            # A3-D3 text bold
-            requests.append({'repeatCell': {
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 0 + i*5,
-                    'startRowIndex':  2 + j*8,
-                    'endColumnIndex': 4 + i*5,
-                    'endRowIndex': 3 + j*8
-                },
-                'cell': {
-                    'userEnteredFormat': {
-                        'textFormat': {'bold': True, }
-                    }
-                },
-                'fields': 'userEnteredFormat(textFormat)'
-            }})
+      #A3-D3 text bold
+      requests.append({'repeatCell': {
+       'range': {
+         'sheetId': sheetId,
+          'startColumnIndex': 0 + i*5,
+          'startRowIndex':  2 + j*9,
+          'endColumnIndex': 4 + i*5,
+          'endRowIndex': 3 + j*9
+       },
+       'cell': {
+           'userEnteredFormat': {
+              'textFormat': {'bold': True,}
+           }
+       },
+       'fields':'userEnteredFormat(textFormat)'
+      }})
 
-            # C6-D7 text bold
-            requests.append({'repeatCell': {
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 2 + i*5,
-                    'startRowIndex': 5 + j*8,
-                    'endColumnIndex': 4 + i*5,
-                    'endRowIndex': 7 + j*8
-                },
-                'cell': {
-                    'userEnteredFormat': {
-                        'textFormat': {'bold': True, }
-                    }
-                },
-                'fields': 'userEnteredFormat(textFormat)'
-            }})
+      #C6-D7 text bold
+      requests.append({'repeatCell': {
+       'range': {
+         'sheetId': sheetId,
+          'startColumnIndex': 2 + i*5,
+          'startRowIndex': 5 + j*9,
+          'endColumnIndex': 4 + i*5,
+          'endRowIndex': 7 + j*9
+       },
+       'cell': {
+           'userEnteredFormat': {
+            'textFormat': {'bold': True,}
+           }
+       },
+       'fields':'userEnteredFormat(textFormat)'
+      }})
 
-            # A1 row height
-            requests.append({'updateDimensionProperties': {
-                'range': {
-                    'sheetId': sheetId,
-                    'dimension': 'ROWS',
-                    'startIndex': 0 + j*8,
-                    'endIndex': 1 + j*8
-                },
-                'properties': {'pixelSize': 38},
-                'fields': 'pixelSize'
-            }})
+      #A1 row height
+      requests.append({'updateDimensionProperties': {
+       'range': {
+          'sheetId': sheetId,
+          'dimension': 'ROWS',
+          'startIndex': 0 + j*9,
+          'endIndex': 1 + j*9
+       },
+       'properties':{'pixelSize': 38},
+       'fields':'pixelSize'
+      }})
 
-            # C-D column width
-            requests.append({'updateDimensionProperties': {
-                'range': {
-                    'sheetId': sheetId,
-                    'dimension': 'COLUMNS',
-                    'startIndex': 2 + i*5,
-                    'endIndex': 4 + i*5
-                },
-                'properties': {'pixelSize': 70},
-                'fields': 'pixelSize'
-            }})
+      #C-D column width
+      requests.append({'updateDimensionProperties': {
+       'range': {
+          'sheetId': sheetId,
+          'dimension': 'COLUMNS',
+          'startIndex': 2 + i*5,
+          'endIndex': 4 + i*5
+       },
+       'properties':{'pixelSize': 70},
+       'fields':'pixelSize'
+      }})
 
-            # A4-A5 row height and width
-            requests.append({'updateDimensionProperties': {
-                'range': {
-                    'sheetId': sheetId,
-                    'dimension': 'ROWS',
-                    'startIndex': 3 + j*8,
-                    'endIndex': 4 + j*8
-                },
-                'properties': {'pixelSize': 70},
-                'fields': 'pixelSize'
-            }})
-            requests.append({'updateDimensionProperties': {
-                'range': {
-                    'sheetId': sheetId,
-                    'dimension': 'ROWS',
-                    'startIndex': 4 + j*8,
-                    'endIndex': 5 + j*8
-                },
-                'properties': {'pixelSize': 30},
-                'fields': 'pixelSize'
-            }})
-            requests.append({'updateDimensionProperties': {
-                'range': {
-                    'sheetId': sheetId,
-                    'dimension': 'COLUMNS',
-                    'startIndex': 0 + i*5,
-                    'endIndex': 2 + i*5
-                },
-                'properties': {'pixelSize': 115},
-                'fields': 'pixelSize'
-            }})
+      #A4-A5 row height and width
+      requests.append({'updateDimensionProperties': {
+       'range': {
+          'sheetId': sheetId,
+          'dimension': 'ROWS',
+          'startIndex': 3 + j*9,
+          'endIndex': 5 + j*9
+       },
+       'properties':{'pixelSize': 42},
+       'fields':'pixelSize'
+      }})
 
-            # A4-A5 text wrap and alignment
-            requests.append({'repeatCell': {
-                'range': {
-                    "sheetId": sheetId,
-                    "startRowIndex": 3 + j*8,
-                    "endRowIndex": 5 + j*8,
-                    "startColumnIndex": 0 + i*5,
-                    "endColumnIndex": 2 + i*5
-                },
-                'cell': {
-                    'userEnteredFormat': {
-                        'wrapStrategy': 'WRAP',
-                        'verticalAlignment': 'TOP'
-                    }
-                },
-                'fields': 'userEnteredFormat(wrapStrategy, padding, verticalAlignment)'
-            }})
+      requests.append({'updateDimensionProperties': {
+       'range': {
+          'sheetId': sheetId,
+          'dimension': 'COLUMNS',
+          'startIndex': 0 + i*5,
+          'endIndex': 2 + i*5
+       },
+       'properties':{'pixelSize': 115},
+       'fields':'pixelSize'
+      }})
 
-            # C3 Border
-            requests.append({'repeatCell': {
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 2 + i*5,
-                    'startRowIndex': 2 + j*8,
-                    'endColumnIndex': 3 + i*5,
-                    'endRowIndex': 3 + j*8
-                },
-                'cell': {
-                    'userEnteredFormat': {
-                        'borders': {
-                            'top': {
-                                'color': {'red': 0, 'green': 0, 'blue': 0},
-                                'style': 'SOLID'
-                            },
-                            'left': {
-                                'color': {'red': 0, 'green': 0, 'blue': 0},
-                                'style': 'SOLID'
-                            }
-                        }
-                    }
-                },
-                'fields': 'userEnteredFormat(borders)'
-            }})
+      #A4-A5 text wrap and alignment
+      requests.append({'repeatCell':{
+          'range':{
+            "sheetId": sheetId,
+            "startRowIndex": 3 + j*9,
+            "endRowIndex": 5 + j*9,
+            "startColumnIndex": 0 + i*5,
+            "endColumnIndex": 2 + i*5
+          },
+          'cell':{
+              'userEnteredFormat':{
+                  'wrapStrategy':'WRAP',
+                  'verticalAlignment': 'TOP'
+              }
+          },
+          'fields':'userEnteredFormat(wrapStrategy, padding, verticalAlignment)'
+      }})
 
-            # D3 Border
-            requests.append({'repeatCell': {
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 3 + i*5,
-                    'startRowIndex': 2 + j*8,
-                    'endColumnIndex': 4 + i*5,
-                    'endRowIndex': 3 + j*8
-                },
-                'cell': {
-                    'userEnteredFormat': {
-                        'borders': {
-                            'top': {
-                                'color': {'red': 0, 'green': 0, 'blue': 0},
-                                'style': 'SOLID'
-                            },
-                            'right': {
-                                'color': {'red': 0, 'green': 0, 'blue': 0},
-                                'style': 'SOLID'
-                            }
-                        }
-                    }
-                },
-                'fields': 'userEnteredFormat(borders)'
-            }})
+      #C3 Border
+      requests.append({'repeatCell': {
+       'range': {
+         'sheetId': sheetId,
+          'startColumnIndex': 2 + i*5,
+          'startRowIndex': 2 + j*9,
+          'endColumnIndex': 3 + i*5,
+          'endRowIndex': 3 + j*9
+       },
+       'cell': {
+           'userEnteredFormat': {
+            'borders': {
+              'top': {
+                  'color': {'red': 0,'green': 0,'blue': 0},
+                  'style': 'SOLID'
+              },
+              'left': {
+                  'color': {'red': 0,'green': 0,'blue': 0},
+                  'style': 'SOLID'
+              }
+            }
+           }
+       },
+       'fields':'userEnteredFormat(borders)'
+      }})
 
-            # C4-C5 Border
-            requests.append({'repeatCell': {
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 2 + i*5,
-                    'startRowIndex': 3 + j*8,
-                    'endColumnIndex': 3 + i*5,
-                    'endRowIndex': 5 + j*8
-                },
-                'cell': {
-                    'userEnteredFormat': {
-                        'borders': {
-                            'left': {
-                                'color': {'red': 0, 'green': 0, 'blue': 0},
-                                'style': 'SOLID'
-                            }
-                        }
-                    }
-                },
-                'fields': 'userEnteredFormat(borders)'
-            }})
+      #D3 Border
+      requests.append({'repeatCell': {
+       'range': {
+         'sheetId': sheetId,
+          'startColumnIndex': 3 + i*5,
+          'startRowIndex': 2 + j*9,
+          'endColumnIndex': 4 + i*5,
+          'endRowIndex': 3 + j*9
+       },
+       'cell': {
+           'userEnteredFormat': {
+            'borders': {
+              'top': {
+                  'color': {'red': 0,'green': 0,'blue': 0},
+                  'style': 'SOLID'
+              },
+              'right': {
+                  'color': {'red': 0,'green': 0,'blue': 0},
+                  'style': 'SOLID'
+              }
+            }
+           }
+       },
+       'fields':'userEnteredFormat(borders)'
+      }})
 
-            # D4-D5 Border
-            requests.append({'repeatCell': {
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 3 + i*5,
-                    'startRowIndex': 3 + j*8,
-                    'endColumnIndex': 4 + i*5,
-                    'endRowIndex': 5 + j*8
-                },
-                'cell': {
-                    'userEnteredFormat': {
-                        'borders': {
-                            'right': {
-                                'color': {'red': 0, 'green': 0, 'blue': 0},
-                                'style': 'SOLID'
-                            }
-                        }
-                    }
-                },
-                'fields': 'userEnteredFormat(borders)'
-            }})
+      #C4-C6 Border
+      requests.append({'repeatCell': {
+       'range': {
+         'sheetId': sheetId,
+          'startColumnIndex': 2 + i*5,
+          'startRowIndex': 3 + j*9,
+          'endColumnIndex': 3 + i*5,
+          'endRowIndex': 6 + j*9
+       },
+       'cell': {
+           'userEnteredFormat': {
+            'borders': {
+                'left': {
+                  'color': {'red': 0,'green': 0,'blue': 0},
+                  'style': 'SOLID'
+              }
+            }
+           }
+       },
+       'fields':'userEnteredFormat(borders)'
+      }})
 
-            # C6-C7 Border
-            requests.append({'repeatCell': {
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 2 + i*5,
-                    'startRowIndex': 5 + j*8,
-                    'endColumnIndex': 3 + i*5,
-                    'endRowIndex': 7 + j*8
-                },
-                'cell': {
-                    'userEnteredFormat': {
-                        'borders': {
-                            'bottom': {
-                                'color': {'red': 0, 'green': 0, 'blue': 0},
-                                'style': 'SOLID'
-                            },
-                            'left': {
-                                'color': {'red': 0, 'green': 0, 'blue': 0},
-                                'style': 'SOLID'
-                            }
-                        }
-                    }
-                },
-                'fields': 'userEnteredFormat(borders)'
-            }})
+      #D4-D6 Border
+      requests.append({'repeatCell': {
+       'range': {
+         'sheetId': sheetId,
+          'startColumnIndex': 3 + i*5,
+          'startRowIndex': 3 + j*9,
+          'endColumnIndex': 4 + i*5,
+          'endRowIndex': 6 + j*9
+       },
+       'cell': {
+           'userEnteredFormat': {
+            'borders': {
+              'right': {
+                  'color': {'red': 0,'green': 0,'blue': 0},
+                  'style': 'SOLID'
+              }
+            }
+           }
+       },
+       'fields':'userEnteredFormat(borders)'
+      }})
 
-            # D6-D7 Border
-            requests.append({'repeatCell': {
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 3 + i*5,
-                    'startRowIndex': 5 + j*8,
-                    'endColumnIndex': 4 + i*5,
-                    'endRowIndex': 7 + j*8
-                },
-                'cell': {
-                    'userEnteredFormat': {
-                        'borders': {
-                            'bottom': {
-                                'color': {'red': 0, 'green': 0, 'blue': 0},
-                                'style': 'SOLID'
-                            },
-                            'right': {
-                                'color': {'red': 0, 'green': 0, 'blue': 0},
-                                'style': 'SOLID'
-                            }
-                        }
-                    }
-                },
-                'fields': 'userEnteredFormat(borders)'
-            }})
+      #C7-C8 Border
+      requests.append({'repeatCell': {
+       'range': {
+         'sheetId': sheetId,
+          'startColumnIndex': 2 + i*5,
+          'startRowIndex': 6 + j*9,
+          'endColumnIndex': 3 + i*5,
+          'endRowIndex': 8 + j*9
+       },
+       'cell': {
+           'userEnteredFormat': {
+            'borders': {
+              'bottom': {
+                  'color': {'red': 0,'green': 0,'blue': 0},
+                  'style': 'SOLID'
+              },
+              'left': {
+                  'color': {'red': 0,'green': 0,'blue': 0},
+                  'style': 'SOLID'
+              }
+            }
+           }
+       },
+       'fields':'userEnteredFormat(borders)'
+      }})
 
-            # A7-B7 Border
-            requests.append({'repeatCell': {
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 0 + i*5,
-                    'startRowIndex': 6 + j*8,
-                    'endColumnIndex': 2 + i*5,
-                    'endRowIndex': 7 + j*8
-                },
-                'cell': {
-                    'userEnteredFormat': {
-                        'borders': {
-                            'top': {
-                                'color': {'red': 0, 'green': 0, 'blue': 0},
-                                'style': 'SOLID'
-                            },
-                            'left': {
-                                'color': {'red': 0, 'green': 0, 'blue': 0},
-                                'style': 'SOLID'
-                            },
-                            'right': {
-                                'color': {'red': 0, 'green': 0, 'blue': 0},
-                                'style': 'SOLID'
-                            },
-                            'bottom': {
-                                'color': {'red': 0, 'green': 0, 'blue': 0},
-                                'style': 'SOLID'
-                            }
-                        }
-                    }
-                },
-                'fields': 'userEnteredFormat(borders)'
-            }})
+      #D7-D8 Border
+      requests.append({'repeatCell': {
+       'range': {
+         'sheetId': sheetId,
+          'startColumnIndex': 3 + i*5,
+          'startRowIndex': 6 + j*9,
+          'endColumnIndex': 4 + i*5,
+          'endRowIndex': 8 + j*9
+       },
+       'cell': {
+           'userEnteredFormat': {
+            'borders': {
+              'bottom': {
+                  'color': {'red': 0,'green': 0,'blue': 0},
+                  'style': 'SOLID'
+              },
+              'right': {
+                  'color': {'red': 0,'green': 0,'blue': 0},
+                  'style': 'SOLID'
+              }
+            }
+           }
+       },
+       'fields':'userEnteredFormat(borders)'
+      }})
 
-    # E width
-    requests.append({'updateDimensionProperties': {
-        'range': {
-            'sheetId': sheetId,
-            'dimension': 'COLUMNS',
-            'startIndex': 4,
-            'endIndex': 5
-        },
-        'properties': {'pixelSize': 50},
-        'fields': 'pixelSize'
-    }})
-    response = sheet.batchUpdate(spreadsheetId=SAMPLE_SPREADSHEET_ID, body={
-                                 'requests': requests}).execute()
+      #A8-B8 Border
+      requests.append({'repeatCell': {
+       'range': {
+         'sheetId': sheetId,
+          'startColumnIndex': 0 + i*5,
+          'startRowIndex': 7 + j*9,
+          'endColumnIndex': 2 + i*5,
+          'endRowIndex': 8 + j*9
+       },
+       'cell': {
+           'userEnteredFormat': {
+            'borders': {
+              'top': {
+                  'color': {'red': 0,'green': 0,'blue': 0},
+                  'style': 'SOLID'
+              },
+              'left': {
+                  'color': {'red': 0,'green': 0,'blue': 0},
+                  'style': 'SOLID'
+              },
+              'right': {
+                  'color': {'red': 0,'green': 0,'blue': 0},
+                  'style': 'SOLID'
+              },
+              'bottom': {
+                  'color': {'red': 0,'green': 0,'blue': 0},
+                  'style': 'SOLID'
+              }
+            }
+           }
+       },
+       'fields':'userEnteredFormat(borders)'
+      }})
+
+  #E width
+  requests.append({'updateDimensionProperties': {
+    'range': {
+      'sheetId': sheetId,
+      'dimension': 'COLUMNS',
+      'startIndex': 4,
+      'endIndex': 5
+    },
+    'properties':{'pixelSize': 50},
+    'fields':'pixelSize'
+  }})
+  response = sheet.batchUpdate(spreadsheetId=SAMPLE_SPREADSHEET_ID, body={'requests' : requests}).execute()
 
 
 def writeinvoice(invoices, sheetId):
-    numInvoices = len(invoices)
-    mergyboi(numInvoices, sheetId)
-    data = []
-    odd = 0
-    even = 0
-    for i in range(numInvoices):
-        if i % 2 == 0:
-            rangeMul = 'Invoices!A' + str(even*8+1)
-            data.append({
-                'range': rangeMul,
-                'values': invoices[i]
-            },)
-            even += 1
-        else:
-            rangeMul = 'Invoices!F' + str(odd*8+1)
-            data.append({
-                'range': rangeMul,
-                'values': invoices[i]
-            },)
-            odd += 1
-    body = {
-        'valueInputOption': "RAW",
-        'data': data
-    }
-    invoicewrite = sheet.values().batchUpdate(
-        spreadsheetId=SAMPLE_SPREADSHEET_ID, body=body).execute()
-    formatInvoice(numInvoices, sheetId)
+  numInvoices = len(invoices)
+  mergyboi(numInvoices, sheetId)
+  data = []
+  odd = 0
+  even = 0
+  for i in range(numInvoices):
+    if i%2 == 0:
+      rangeMul = 'Invoices!A' + str(even*9+1)
+      data.append({
+        'range': rangeMul,
+        'values': invoices[i]
+      },)
+      even+=1
+    else:
+      rangeMul = 'Invoices!F' + str(odd*9+1)
+      data.append({
+        'range': rangeMul,
+        'values': invoices[i]
+      },)
+      odd+=1
+  body = {
+    'valueInputOption': "RAW",
+    'data': data
+  }
+  invoicewrite = sheet.values().batchUpdate(spreadsheetId=SAMPLE_SPREADSHEET_ID, body=body).execute()
+  formatInvoice(numInvoices, sheetId)
 
 
-def generateInvoices(dataframe):
-    invoices = []
-    temp = dataframe[(dataframe['Order Status'] == 'Dispatch')]
-    names = temp['Facebook Name'].unique()
-    for name in names:
-        finalDataframe = temp[(temp['Facebook Name'] == name)]
-        invoices.append(makeInvoice(finalDataframe, name))
-    writeinvoice(invoices, getSheetID())
-
+# Add delivery area thing in the invoice
 
 def makeInvoice(dataframe, name):
-    sum = getTotalPrice(dataframe)
-    adv = getAdvance(dataframe)
-    deliveryCharge = getDeliveryCharge(dataframe, sum, adv)
-    deliveryArea = ""
-    if ( deliveryCharge > 100 ):
-      deliveryArea = "Outside\nDhaka"
-    else:
-      deliveryArea = "Inside\nDhaka"
-    contactNumber = getContactNumber(dataframe)
-    address = getAddress(dataframe)
+  sum = getTotalPrice(dataframe)
+  adv = getAdvance(dataframe)
+  deliveryCharge = getDeliveryCharge(dataframe, sum, adv)
+  deliveryArea = ""
+  if ( deliveryCharge > 100 ):
+    deliveryArea = "Outside\nDhaka"
+  else:
+    deliveryArea = "Inside\nDhaka"
+  contactNumber = getContactNumber(dataframe)
+  address = getAddress(dataframe)
 
-    areaArr = dataframe['Area'].unique()
-    area = areaArr[0]
+  areaArr = dataframe['Area'].unique()
+  area = areaArr[0]
 
-    invoiceData=[]
-    totalItems="Number of items: "
-    totalItems=totalItems + str(len(dataframe))
+  invoiceData=[]
+  totalItems="Number of items: "
+  totalItems=totalItems + str(len(dataframe))
 
-    invoiceData.append(["Chérie","","Invoice"])
-    invoiceData.append(["Delivery to"])
-    invoiceData.append([name,"","Total Price",sum])
-    invoiceData.append([address,"","Delivery \nCharge \n(" + deliveryArea+ ")",deliveryCharge])
-    invoiceData.append(["","","Advance",adv])
-    invoiceData.append([contactNumber,area,"Total Due",sum-adv+deliveryCharge])
-    invoiceData.append([totalItems])
-    invoiceData.append(["------------------------------------------"])
-    return invoiceData
+  invoiceData.append(["Chérie","","Invoice"])
+  invoiceData.append(["Delivery to"])
+  invoiceData.append([name,"","Total\nPrice",sum])
+  invoiceData.append([address])
+  invoiceData.append(["","","Delivery\nCharge",deliveryCharge])
+  invoiceData.append([area,"","Advance",adv])
+  invoiceData.append([contactNumber,"","Total\nDue",sum-adv+deliveryCharge])
+  invoiceData.append([totalItems])
+  invoiceData.append(["------------------------------------------"])
+  return invoiceData
