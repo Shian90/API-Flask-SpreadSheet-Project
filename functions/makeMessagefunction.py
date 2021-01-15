@@ -14,9 +14,9 @@ def makeMessage(dataframe, name):
   deliveryCharge = getDeliveryCharge(dataframe, sum, adv)
   deliveryArea = ""
   if ( deliveryCharge > 100 ):
-    deliveryArea = "Outside Dhaka"
+    deliveryArea = "130 or 160 Outside Dhaka"
   else:
-    deliveryArea = "Inside Dhaka"
+    deliveryArea = "100 Inside Dhaka"
   contactNumber = getContactNumber(dataframe)
   address = getAddress(dataframe)
 
@@ -25,7 +25,7 @@ def makeMessage(dataframe, name):
   message+="\nTotal - " + str(sum) + " BDT\n"
   message+="Weight charge - " + str(wc) + " BDT\n"
   message+="Advanced - " + str(adv) + " BDT\n"
-  message += "Due - " + str(sum - adv + wc) + " BDT + Delivery Charge - " + str(deliveryCharge) + " BDT (" + deliveryArea + ")\n"
+  message += "Due = " + str(sum - adv + wc) + " BDT + Delivery Charge (" +  deliveryArea + ")\n"
   message += "\nDelivery Details:\n"
   message+="Contact Number: " + contactNumber + "\n"
   message+="Address: " + address + "\n"

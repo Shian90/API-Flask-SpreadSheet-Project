@@ -101,17 +101,6 @@ def mergyboi(totallength, sheetId):
                     'endRowIndex': 5 + j*8
                 }
             }})
-            # A6-B6
-            requests.append({'mergeCells': {
-                'mergeType': 'MERGE_ALL',
-                'range': {
-                    'sheetId': sheetId,
-                    'startColumnIndex': 0 + i*5,
-                    'startRowIndex': 5 + j*8,
-                    'endColumnIndex': 2 + i*5,
-                    'endRowIndex': 6 + j*8
-                }
-            }})
             # A7-B7
             requests.append({'mergeCells': {
                 'mergeType': 'MERGE_ALL',
@@ -563,6 +552,9 @@ def makeInvoice(dataframe, name):
     contactNumber = getContactNumber(dataframe)
     address = getAddress(dataframe)
 
+    areaArr = dataframe['Area'].unique()
+    area = areaArr[0]
+
     invoiceData=[]
     totalItems="Number of items: "
     totalItems=totalItems + str(len(dataframe))
@@ -572,7 +564,7 @@ def makeInvoice(dataframe, name):
     invoiceData.append([name,"","Total Price",sum])
     invoiceData.append([address,"","Delivery \nCharge \n(" + deliveryArea+ ")",deliveryCharge])
     invoiceData.append(["","","Advance",adv])
-    invoiceData.append([contactNumber,"","Total Due",sum-adv+deliveryCharge])
+    invoiceData.append([contactNumber,area,"Total Due",sum-adv+deliveryCharge])
     invoiceData.append([totalItems])
     invoiceData.append(["------------------------------------------"])
     return invoiceData
