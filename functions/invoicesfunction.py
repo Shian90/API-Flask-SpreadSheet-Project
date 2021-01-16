@@ -180,6 +180,7 @@ def mergyboi(totallength, sheetId):
 
 
 
+
 def formatInvoice(totallength, sheetId):
   requests = []
   for i in range(2):
@@ -230,28 +231,55 @@ def formatInvoice(totallength, sheetId):
        'cell': {
            'userEnteredFormat': {
               'textFormat': {'bold': True,'fontSize': 20,},
-              'verticalAlignment': 'BOTTOM',
+              'verticalAlignment': 'MIDDLE',
               'horizontalAlignment': 'CENTER'
            }
        },
        'fields':'userEnteredFormat(textFormat, verticalAlignment, horizontalAlignment)'
       }})
+      #C3-D8 vertical alignment
+      requests.append({'repeatCell': {
+       'range': {
+         'sheetId': sheetId,
+          'startColumnIndex': 2 + i*5,
+          'startRowIndex':  2 + j*9,
+          'endColumnIndex': 4 + i*5,
+          'endRowIndex': 8 + j*9
+       },
+       'cell': {
+           'userEnteredFormat': {
+              'verticalAlignment': 'MIDDLE',
+           }
+       },
+       'fields':'userEnteredFormat(textFormat, verticalAlignment, horizontalAlignment)'
+      }})
 
-      #A3-D3 text bold
+      #A3 text bold, fontSize
       requests.append({'repeatCell': {
        'range': {
          'sheetId': sheetId,
           'startColumnIndex': 0 + i*5,
           'startRowIndex':  2 + j*9,
-          'endColumnIndex': 4 + i*5,
+          'endColumnIndex': 1 + i*5,
           'endRowIndex': 3 + j*9
        },
        'cell': {
            'userEnteredFormat': {
-              'textFormat': {'bold': True,}
+              'textFormat': {'bold': True, 'fontSize':12,}
            }
        },
        'fields':'userEnteredFormat(textFormat)'
+      }})
+      #A3 row height
+      requests.append({'updateDimensionProperties': {
+       'range': {
+          'sheetId': sheetId,
+          'dimension': 'ROWS',
+          'startIndex': 2 + j*9,
+          'endIndex': 3 + j*9
+       },
+       'properties':{'pixelSize': 25},
+       'fields':'pixelSize'
       }})
 
       #C6-D7 text bold
@@ -303,7 +331,7 @@ def formatInvoice(totallength, sheetId):
           'startIndex': 3 + j*9,
           'endIndex': 5 + j*9
        },
-       'properties':{'pixelSize': 42},
+       'properties':{'pixelSize': 40},
        'fields':'pixelSize'
       }})
 
@@ -314,7 +342,19 @@ def formatInvoice(totallength, sheetId):
           'startIndex': 0 + i*5,
           'endIndex': 2 + i*5
        },
-       'properties':{'pixelSize': 115},
+       'properties':{'pixelSize': 135},
+       'fields':'pixelSize'
+      }})
+
+      #A7-A8 row height
+      requests.append({'updateDimensionProperties': {
+       'range': {
+          'sheetId': sheetId,
+          'dimension': 'ROWS',
+          'startIndex': 6 + j*9,
+          'endIndex': 8 + j*9
+       },
+       'properties':{'pixelSize': 23},
        'fields':'pixelSize'
       }})
 
@@ -432,6 +472,23 @@ def formatInvoice(totallength, sheetId):
        'fields':'userEnteredFormat(borders)'
       }})
 
+      #D7-D8 text bold, fontSize
+      requests.append({'repeatCell': {
+       'range': {
+         'sheetId': sheetId,
+          'startColumnIndex': 3 + i*5,
+          'startRowIndex':  6 + j*9,
+          'endColumnIndex': 4 + i*5,
+          'endRowIndex': 8 + j*9
+       },
+       'cell': {
+           'userEnteredFormat': {
+              'textFormat': {'bold': True, 'fontSize':14,}
+           }
+       },
+       'fields':'userEnteredFormat(textFormat)'
+      }})
+
       #C7-C8 Border
       requests.append({'repeatCell': {
        'range': {
@@ -526,10 +583,12 @@ def formatInvoice(totallength, sheetId):
       'startIndex': 4,
       'endIndex': 5
     },
-    'properties':{'pixelSize': 50},
+    'properties':{'pixelSize': 20},
     'fields':'pixelSize'
   }})
   response = sheet.batchUpdate(spreadsheetId=SAMPLE_SPREADSHEET_ID, body={'requests' : requests}).execute()
+
+
 
 
 def writeinvoice(invoices, sheetId):
@@ -561,11 +620,13 @@ def writeinvoice(invoices, sheetId):
   formatInvoice(numInvoices, sheetId)
 
 
+
 # Add delivery area thing in the invoice
 
 def makeInvoice(dataframe, name):
   sum = getTotalPrice(dataframe)
   adv = getAdvance(dataframe)
+  wc = getWeightCharge(dataframe)
   deliveryCharge = getDeliveryCharge(dataframe, sum, adv)
   deliveryArea = ""
   if ( deliveryCharge > 100 ):
@@ -584,11 +645,11 @@ def makeInvoice(dataframe, name):
 
   invoiceData.append(["Chérie","","Invoice"])
   invoiceData.append(["Delivery to"])
-  invoiceData.append([name,"","Total\nPrice",sum])
+  invoiceData.append([name,"","Total\nPrice",sum+wc])
   invoiceData.append([address])
   invoiceData.append(["","","Delivery\nCharge",deliveryCharge])
   invoiceData.append([area,"","Advance",adv])
-  invoiceData.append([contactNumber,"","Total\nDue",sum-adv+deliveryCharge])
+  invoiceData.append([contactNumber,"","Total\nDue",sum-adv+deliveryCharge+wc])
   invoiceData.append([totalItems])
   invoiceData.append(["------------------------------------------"])
   return invoiceData
