@@ -9,8 +9,8 @@ def spreadsheetData():
 
     # The ID and range of a sample spreadsheet.
     # Take as user input?
-    SAMPLE_SPREADSHEET_ID = '1xl0OP_IhryWg4eXU5F8K6GoFVDKe0gpdNo5u13WjLlI'
-    SAMPLE_RANGE_NAME = 'Sheet1!A1:Z1000'
+    SAMPLE_SPREADSHEET_ID = '1XvcXPr3MLvU4RolxGlbU_0GOBYUYp-TxnIMToQaoYYQ'
+    SAMPLE_RANGE_NAME = 'Orders (Form)!A1:Z1000'
 
     # just need to redefine this
     SERVICE_ACCOUNT_FILE = 'cherie-notebook-cred.json'

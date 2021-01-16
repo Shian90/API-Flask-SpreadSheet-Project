@@ -19,8 +19,8 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 
 # The ID and range of a sample spreadsheet.
 # Take as user input?
-SAMPLE_SPREADSHEET_ID = '1xl0OP_IhryWg4eXU5F8K6GoFVDKe0gpdNo5u13WjLlI'
-SAMPLE_RANGE_NAME = 'Sheet1!A1:Z1000'
+SAMPLE_SPREADSHEET_ID = '1XvcXPr3MLvU4RolxGlbU_0GOBYUYp-TxnIMToQaoYYQ'
+SAMPLE_RANGE_NAME = 'Orders (Form)!A1:Z1000'
 
 # just need to redefine this
 SERVICE_ACCOUNT_FILE = 'cherie-notebook-cred.json'
@@ -237,11 +237,11 @@ def formatInvoice(totallength, sheetId):
        },
        'fields':'userEnteredFormat(textFormat, verticalAlignment, horizontalAlignment)'
       }})
-      #C3-D8 vertical alignment
+      #A3-D8 vertical alignment
       requests.append({'repeatCell': {
        'range': {
          'sheetId': sheetId,
-          'startColumnIndex': 2 + i*5,
+          'startColumnIndex': 0 + i*5,
           'startRowIndex':  2 + j*9,
           'endColumnIndex': 4 + i*5,
           'endRowIndex': 8 + j*9
@@ -282,14 +282,31 @@ def formatInvoice(totallength, sheetId):
        'fields':'pixelSize'
       }})
 
-      #C6-D7 text bold
+      #C7-D7 text bold
       requests.append({'repeatCell': {
        'range': {
          'sheetId': sheetId,
           'startColumnIndex': 2 + i*5,
-          'startRowIndex': 5 + j*9,
+          'startRowIndex': 6 + j*9,
           'endColumnIndex': 4 + i*5,
           'endRowIndex': 7 + j*9
+       },
+       'cell': {
+           'userEnteredFormat': {
+            'textFormat': {'bold': True,}
+           }
+       },
+       'fields':'userEnteredFormat(textFormat)'
+      }})
+
+      #A8 text bold
+      requests.append({'repeatCell': {
+       'range': {
+         'sheetId': sheetId,
+          'startColumnIndex': 0 + i*5,
+          'startRowIndex': 7 + j*9,
+          'endColumnIndex': 1 + i*5,
+          'endRowIndex': 8 + j*9
        },
        'cell': {
            'userEnteredFormat': {
@@ -370,7 +387,7 @@ def formatInvoice(totallength, sheetId):
           'cell':{
               'userEnteredFormat':{
                   'wrapStrategy':'WRAP',
-                  'verticalAlignment': 'TOP'
+                  'verticalAlignment': 'MIDDLE'
               }
           },
           'fields':'userEnteredFormat(wrapStrategy, padding, verticalAlignment)'
@@ -508,6 +525,10 @@ def formatInvoice(totallength, sheetId):
               'left': {
                   'color': {'red': 0,'green': 0,'blue': 0},
                   'style': 'SOLID'
+              },
+              'top': {
+                  'color': {'red': 0,'green': 0,'blue': 0},
+                  'style': 'SOLID'
               }
             }
            }
@@ -532,6 +553,10 @@ def formatInvoice(totallength, sheetId):
                   'style': 'SOLID'
               },
               'right': {
+                  'color': {'red': 0,'green': 0,'blue': 0},
+                  'style': 'SOLID'
+              },
+              'top': {
                   'color': {'red': 0,'green': 0,'blue': 0},
                   'style': 'SOLID'
               }
