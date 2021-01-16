@@ -20,7 +20,7 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 # The ID and range of a sample spreadsheet.
 # Take as user input?
 SAMPLE_SPREADSHEET_ID = '1XvcXPr3MLvU4RolxGlbU_0GOBYUYp-TxnIMToQaoYYQ'
-SAMPLE_RANGE_NAME = 'Orders (Form)!A1:Z1000'
+SAMPLE_RANGE_NAME = 'Orders (Form)!A1:Z'
 
 # just need to redefine this
 SERVICE_ACCOUNT_FILE = 'cherie-notebook-cred.json'

@@ -7,22 +7,26 @@ def generateDataframe(spreadsheetFetchResults):
 
     numRows = len(data)
 
-    for i in range(1, numRows):
-        data[i].append("n/a")
+      numCols = len(data[0])
 
-    numCols = len(data[0])
-    columns = []
-    datarows = np.empty([numRows-1, numCols], dtype=object)
+      for i in range(1, numRows):
+        if ( len(data[i]) < 25 ):
+          for j in range(numCols-len(data[i])):
+            data[i].append("n/a")
 
-    for column in data[0]:  # column names
+
+      columns = []
+      datarows = np.empty([numRows-1, numCols], dtype = object)
+
+      for column in data[0]: # column names
         columns.append(column.strip())
 
-    for i in range(numRows):
+      for i in range(numRows):
         if i == 0:
-            continue
+          continue
         else:
-            for j in range(numCols):
-                datarows[i-1][j] = data[i][j]
+          for j in range(numCols):
+            datarows[i-1][j] = data[i][j]
 
     dataframe = pd.DataFrame(data=datarows, columns=columns)
     for index in range(len(dataframe)):

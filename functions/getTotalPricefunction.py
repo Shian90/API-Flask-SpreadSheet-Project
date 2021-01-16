@@ -1,5 +1,6 @@
 def getTotalPrice(dataframe):
     sum = 0
     for price in dataframe['Price']:
-        sum += int(price)
+        if ( price != '' ):
+            sum += int(price)
     return int(sum)
