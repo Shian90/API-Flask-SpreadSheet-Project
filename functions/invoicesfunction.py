@@ -664,9 +664,13 @@ def makeInvoice(dataframe, name):
   areaArr = dataframe['Area'].unique()
   area = areaArr[0]
 
+  qty = 0
+  for i in dataframe.index:
+    qty += int(dataframe.loc[i, '#'])
+
   invoiceData=[]
   totalItems="Number of items: "
-  totalItems=totalItems + str(len(dataframe))
+  totalItems=totalItems + str(qty)
 
   invoiceData.append(["Chérie","","Invoice"])
   invoiceData.append(["Delivery to"])
